@@ -42,6 +42,72 @@ else{
     $mensaje = "Es menor que 5 ($contador)";
 }
 
+$edad = null;
+$edad = 40;
+
+if($edad === 30){
+    echo "Su edad es 30 <br>";
+}
+
+if($edad !== 30){
+    echo "No es igual a 30 por su valor <br>";
+}
+
+// operadores
+
+if(($edad >= 30 && $contador >= 5) || $contador === 6){
+    echo "Se cumplen alguna de estas condiciones <br>";
+}
+
+// condicionales elseif
+
+$nota = 3;
+
+if($nota >= 5){
+    echo "Aprobado <br>";
+}
+
+elseif($nota < 5 && $nota != null){
+    echo "Suspenso";
+}
+
+else{
+    echo "No presentado";
+}
+
+// condicional antiguo y moderno para operaciones simples
+
+if($edad >= 18) {
+    $mensaje = "Mayor";
+}
+
+else{
+    $mensaje = "Menor";
+}
+
+echo $mensaje . "<br>";
+
+// alternativa moderna
+
+$mensaje = $edad >=18
+
+    ? "Mayor"
+    : "Menor";
+
+echo $mensaje . "<br>";
+
+// variables con query param obtenidas de la URL a través de "url?nombre=xxx"
+
+if (isset($_GET['nombre']) && isset ($_GET['apellido'])){
+    $nombreRecogido = $_GET['nombre'];
+    $apellidoRecogido = $_GET ['apellido'];
+
+}
+
+// alternativa Null Coalescing
+
+$nombreRecogido = $_GET['nombre'] ?? $_GET['nombre'];
+$apellidoRecogido = $_GET['apellido'] ?? $_GET['apellido'];
 
 ?>
 
@@ -57,18 +123,30 @@ else{
 
         .boton{
             font-family:Arial;
-            background-color: aqua;
-            color: red;
+            background-color: red;
+            color: black;
             border-radius: 4px;
             font-size: 1.1rem;
             padding: 4px;
-        }     
+        } 
+
+        .contenedor{
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap:2rem;
+        }
+
+
         
     </style>
 </head>
 <body>
     <h1> <?php echo $nombreCompleto ?></h1>
-    <p> RESULATDO:<?= $resultado ?></p>
+    <p> RESULTADO:<?= $resultado ?></p>
     <p><?= $texto ?></p>
     <p><?= $texto2 ?></p>
     <?= $boton ?>
@@ -76,5 +154,50 @@ else{
     <p><?= IVA ?></p>
 
     <p><?= $mensaje ?></p>
+
+    <div class = "contenedor" id= #zonaBotones >
+        <a href="/?nombre=Igor&apellido=Aranaz #zonaBotones" class="boton">Igor Aranaz</a>
+        <a href="/?nombre=Erika&apellido=De Santiago #zonaBotones" class="boton">Erika De Santiago</a>
+        <a href="/?nombre=Niko&apellido=Mezkiritz #zonaBotones" class="boton">Niko Mezkiritz</a>
+        <a href="/?nombre=Arkady&apellido=Krutius #zonaBotones" class="boton">Arkady Krutius</a>
+        <a href="/?nombre=Ekaterina&apellido=Goncharova #zonaBotones" class="boton">Ekaterina Goncharova</a>
+        <a href="/?nombre=Mauricio&apellido=Mahecha #zonaBotones" class="boton">Mauricio Mahecha</a>
+        <a href="/?nombre=Fabian&apellido=Mongrut #zonaBotones" class="boton">Fabian Mongrut</a>
+        <a href="/?nombre=Noelia&apellido=Valverde #zonaBotones" class="boton">Noelia Valverde</a>
+    </div>
+
+    <p>Nombre seleccionado: <?= "El nombre seleccionado es $nombreRecogido $apellidoRecogido"; ?></p>
+
+    <?php
+    // Condicionar el html desde el propio php allí donde toque el html
+    if(isset($nombreRecogido) && isset($apellidoRecogido)){
+
+        echo <<< HTML
+
+        <p>Nombre seleccionado: El nombre es  $nombreRecogido $apellidoRecogido </p>
+
+        HTML;
+
+        // forma echo habitual (antiguo) de asignar un echo a un html desde php
+        echo "<p>Nombre seleccionado: El nombre es  $nombreRecogido $apellidoRecogido </p>";
+
+    }
+
+    ?>
+
+    <!-- Condicionar html desde php  -->
+
+    <?php
+
+    if(isset($nombreRecogido) && isset($apellidoRecogido)){
+    ?>
+
+        <p>Nombre seleccionado: El nombre es <?= $nombreRecogido . "" . $apellidoRecogido ?></p>
+    <?php
+
+    }
+
+    ?>
+
 </body>
 </html>

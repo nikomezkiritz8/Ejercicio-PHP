@@ -178,6 +178,13 @@ $persona = [
 
     <style>
 
+        *{
+            padding: 0;
+            margin: 0;
+            top: 0;
+            box-sizing: border-box;
+        }
+
         .boton{
             font-family:Arial;
             background-color: red;
@@ -372,13 +379,35 @@ $persona = [
         </tr>
     </table>
 
+    <p>8)</p>
 
+    <p>Respuesta: <?= calcularMayor(100, 100)?></p>
 
+    <?php
 
+    function calcularMayor(int $num1, int $num2): string{
+        if($num1 > $num2){
+            return "$num1 es mayor que $num2";
+        }elseif($num2 > $num1){
+            return "$num2 es mayor que $num1";
+        }else{
+            return "$num1 es igual a $num2";
+        }
+    }
 
+    ?>
 
-        
+    <p>9) </p>
+    <p>El precio con IVA de diez euros <?= calcularIva(10) ?></p>
 
+    <?php
+
+    function calcularIva(int $precio) : int|float{
+        return $precio *1.21;
+
+    }
+
+    ?>
 
 
 </body>

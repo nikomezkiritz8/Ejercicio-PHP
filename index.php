@@ -109,6 +109,63 @@ if (isset($_GET['nombre']) && isset ($_GET['apellido'])){
 $nombreRecogido = $_GET['nombre'] ?? $_GET['nombre'];
 $apellidoRecogido = $_GET['apellido'] ?? $_GET['apellido'];
 
+
+// función con parámetros y tipado
+function sumar(int $a, int $b): int{
+    return $a + $b;
+}
+
+echo sumar(2, 5) . "<br>"; // 7
+
+// -----------------------------------------------------------------------------
+
+// Ejercicios de la clase 89
+
+echo "Ejercicios de la clase 89: <br>";
+
+// ejercicio 1
+
+$minombre = "Niko Mezkiritz";
+
+echo "Mi nombre es: " . $minombre;
+
+// ejercicio 2
+
+$num1 = 5;
+$num2 = 10;
+
+$resultadoSuma = $num1 + $num2;
+$resultadoResta = $num1 - $num2;
+$resultadoMulti = $num1 * $num2;
+$resultadoDivi = $num1 / $num2;
+
+// ejercicio 3
+
+$edad = 24;
+
+if($edad >=18){
+    $comentario = "Es mayor de edad";
+}
+else{
+
+    $comentario = "Es menor de edad";
+}
+
+// ejercicio 6
+
+$ciudades = ["Donostia" , "Bilbao", "Baiona", "Elizondo", "Gasteiz"];
+
+// ejercicio 7
+
+$persona = [
+    "nombre" => "Niko",
+    "apellido" => "Mezkiritz",
+    "telefono" => "638141964",
+    "ciudad" => "Elizondo",
+    "edad" => 27
+
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -139,6 +196,16 @@ $apellidoRecogido = $_GET['apellido'] ?? $_GET['apellido'];
             flex-wrap: wrap;
             gap:2rem;
         }
+
+        table{
+            width: 500px;
+        }
+
+        tr, td{
+            border: 1px solid black;
+        }
+
+
 
 
         
@@ -198,6 +265,121 @@ $apellidoRecogido = $_GET['apellido'] ?? $_GET['apellido'];
     }
 
     ?>
+
+    <h2>Ejercicios de la clase 89: </h2>
+    <p> 1) Este es mi nombre: <?= $minombre ?> </p>
+    <p> 2) operaciones matemáticas</p>
+    <p>los números son el 5 y el 10</p>
+    <ul>
+        <li>Suma: <?= $resultadoSuma ?></li>
+        <li>Resta: <?= $resultadoResta ?></li>
+        <li>Multiplicacion: <?= $resultadoMulti ?></li>
+        <li>Division: <?= $resultadoDivi ?></li>
+    </ul>
+
+    <p>3) mostrar mensaje de edad</p>
+    <p><?= $comentario ?></p>
+
+    <p>4) Ejercicio de iteracion</p>
+
+    <?php
+
+    for($i=1; $i<= 20; $i++){
+        echo <<<HTML
+
+        <p>$i</p>
+
+        HTML;
+    };
+
+    ?>
+
+    <p>5) Ejercicio de iteración solo con numeros pares</p>
+
+    <?php
+
+    for($i=1; $i<=20; $i++){
+        if($i % 2 == 0){
+            echo <<<HTML
+            <p>$i</p>
+            HTML;
+        }
+    };
+    
+    ?>
+
+    <p>6) Mostrar ciudades del array</p>
+
+    <table>
+        <tr>
+            <td>Numero</td>
+            <td>Ciudad</td>
+        </tr>
+
+        <?php
+
+        $num = 1;
+
+        foreach($ciudades as $ciudad){
+            echo   
+            <<<HTML
+
+                <tr>
+                    <td>$num</td>
+                    <td>$ciudad</td>
+
+                </tr>
+
+            HTML;
+            $num++;
+        }
+
+        ?>
+    </table>
+
+    <p>7)</p>
+
+    <table>
+        <tr>
+            <th>tipo</th>
+            <th>valor</th>
+        </tr>
+
+        <tr>
+            <td>Nombre</td>
+            <td><?= $persona ["nombre"] ?></td>
+        </tr>
+
+        <tr>
+            <td>Apellidos</td>
+            <td><?= $persona ["apellido"] ?></td>
+        </tr>
+
+        <tr>
+            <td>Telefono</td>
+            <td><?= $persona ["telefono"] ?></td>
+
+        </tr>
+
+        <tr>
+            <td>Ciudad</td>
+            <td><?= $persona ["ciudad"] ?></td>
+        </tr>
+
+        <tr>
+            <td>Edad</td>
+            <td><?= $persona ["edad"] ?> </td>
+        </tr>
+    </table>
+
+
+
+
+
+
+        
+
+
 
 </body>
 </html>
